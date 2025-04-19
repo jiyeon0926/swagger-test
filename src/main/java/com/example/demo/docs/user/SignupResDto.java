@@ -2,8 +2,10 @@ package com.example.demo.docs.user;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
+import lombok.Setter;
 
 @Getter
+@Setter
 @Schema(description = "회원가입 응답 DTO")
 public class SignupResDto {
 

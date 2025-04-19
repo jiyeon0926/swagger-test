@@ -6,6 +6,8 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -43,7 +45,13 @@ public class UserController {
                     )
             )
     })
-    public SignupResDto signup(@RequestBody SignupReqDto signupReqDto) {
-        return new SignupResDto();
+    public ResponseEntity<SignupResDto> signup(@RequestBody SignupReqDto signupReqDto) {
+        SignupResDto signupResDto = new SignupResDto();
+
+        signupResDto.setEmail(signupReqDto.getEmail());
+        signupResDto.setPassword(signupReqDto.getPassword());
+        signupResDto.setName(signupReqDto.getName());
+
+        return new ResponseEntity<>(signupResDto, HttpStatus.CREATED);
     }
 }
